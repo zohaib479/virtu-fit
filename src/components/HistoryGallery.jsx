@@ -10,7 +10,7 @@ export default function HistoryGallery({ historyList, onSelectHistoryItem, onCle
         </div>
         <h3 className="text-xl font-bold text-white mb-2">No Try-On History Yet</h3>
         <p className="text-sm text-gray-400">
-          Jab aap Try-On studio me images upload karke AI fit generate karenge, to yahan aapke sabhi outputs save hote rahenge.
+          Upload images and generate a try-on in the studio to see your saved results here.
         </p>
       </div>
     );
@@ -45,7 +45,7 @@ export default function HistoryGallery({ historyList, onSelectHistoryItem, onCle
               <img
                 src={item.imageUrl}
                 alt="Try-on Result"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-contain"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent opacity-80" />
 

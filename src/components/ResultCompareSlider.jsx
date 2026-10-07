@@ -51,7 +51,7 @@ export default function ResultCompareSlider({
     if (!tryOnUrl) return;
     const a = document.createElement('a');
     a.href = tryOnUrl;
-    a.download = `aurafit-tryon-${Date.now()}.jpg`;
+    a.download = `clothing-simulator-tryon-${Date.now()}.jpg`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -107,7 +107,7 @@ export default function ResultCompareSlider({
           <img
             src={tryOnUrl}
             alt="Virtual Try-On Result"
-            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+            className="absolute inset-0 w-full h-full object-contain object-center pointer-events-none"
           />
           <div className="absolute top-4 right-4 z-10 px-3 py-1.5 rounded-xl bg-dark-bg/80 backdrop-blur-md border border-brand-cyber/30 text-brand-cyber font-bold text-xs shadow-lg uppercase tracking-wider">
             ✨ Virtual Try-On (After)
@@ -121,7 +121,7 @@ export default function ResultCompareSlider({
             <img
               src={originalUrl}
               alt="Original Model"
-              className="absolute inset-0 w-full h-full object-cover object-center max-w-none"
+              className="absolute inset-0 w-full h-full object-contain object-center max-w-none"
               style={{ width: containerRef.current?.offsetWidth || '100%' }}
             />
             <div className="absolute top-4 left-4 z-10 px-3 py-1.5 rounded-xl bg-dark-bg/80 backdrop-blur-md border border-white/20 text-gray-200 font-bold text-xs shadow-lg uppercase tracking-wider">

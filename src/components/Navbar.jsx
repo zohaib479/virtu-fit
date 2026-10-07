@@ -18,13 +18,13 @@ export default function Navbar({ apiKey, onOpenKeyModal, activeTab, setActiveTab
           <div>
             <div className="flex items-center gap-2">
               <span className="font-extrabold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-brand-cyber">
-                AURA<span className="text-brand-glow">FIT</span>
+                Clothing Simulator
               </span>
               <span className="px-2 py-0.5 text-[10px] font-semibold tracking-wider text-brand-cyber bg-brand-cyber/10 border border-brand-cyber/20 rounded-full uppercase">
                 AI Pro v2.5
               </span>
             </div>
-            <p className="text-[11px] text-gray-400 font-medium">Virtual Try-On Engine</p>
+            <p className="text-[11px] text-gray-400 font-medium">AI Virtual Fitting Room</p>
           </div>
         </div>
 

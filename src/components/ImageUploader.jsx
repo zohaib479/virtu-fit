@@ -86,7 +86,7 @@ export default function ImageUploader({
               <img
                 src={humanImage.url}
                 alt="Human Model"
-                className="w-full h-full object-cover object-center transition-transform duration-500 group-hover/img:scale-105"
+                className="w-full h-full object-contain object-center"
               />
               
               {/* Sci-Fi Scanning Animation */}
@@ -192,7 +192,7 @@ export default function ImageUploader({
               <img
                 src={clothingImage.url}
                 alt="Clothing Garment"
-                className="w-full h-full object-cover object-center transition-transform duration-500 group-hover/img:scale-105"
+                className="w-full h-full object-contain object-center"
               />
 
               <div className="absolute inset-0 bg-gradient-to-b from-brand-cyber/10 via-transparent to-brand-glow/10 pointer-events-none" />

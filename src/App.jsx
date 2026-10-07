@@ -11,7 +11,15 @@ import { Sparkles, Key, AlertTriangle, ShieldCheck, Zap, Layers, RefreshCw } fro
 
 export default function App() {
   // State management
-  const [apiKey, setApiKey] = useState(() => localStorage.getItem('aurafit_openai_key') || '');
+  const [apiKey, setApiKey] = useState(() => {
+    const storedKey = localStorage.getItem('clothing_simulator_openai_key');
+    const legacyKey = localStorage.getItem('aurafit_openai_key');
+    if (!storedKey && legacyKey) {
+      localStorage.setItem('clothing_simulator_openai_key', legacyKey);
+      localStorage.removeItem('aurafit_openai_key');
+    }
+    return storedKey || legacyKey || '';
+  });
   const [isKeyModalOpen, setIsKeyModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('studio');
 
@@ -29,8 +37,13 @@ export default function App() {
   // History Gallery State
   const [historyList, setHistoryList] = useState(() => {
     try {
-      const saved = localStorage.getItem('aurafit_history');
-      return saved ? JSON.parse(saved) : [];
+      const saved = localStorage.getItem('clothing_simulator_history');
+      const legacySaved = localStorage.getItem('aurafit_history');
+      if (!saved && legacySaved) {
+        localStorage.setItem('clothing_simulator_history', legacySaved);
+        localStorage.removeItem('aurafit_history');
+      }
+      return saved || legacySaved ? JSON.parse(saved || legacySaved) : [];
     } catch (e) {
       return [];
     }
@@ -39,7 +52,7 @@ export default function App() {
   // Save history to localstorage
   useEffect(() => {
     try {
-      localStorage.setItem('aurafit_history', JSON.stringify(historyList));
+      localStorage.setItem('clothing_simulator_history', JSON.stringify(historyList));
     } catch (e) {
       console.error(e);
     }
@@ -48,13 +61,13 @@ export default function App() {
   // Handle Save API Key
   const handleSaveKey = (key) => {
     setApiKey(key);
-    localStorage.setItem('aurafit_openai_key', key);
+    localStorage.setItem('clothing_simulator_openai_key', key);
   };
 
   // Handle Clear API Key
   const handleClearKey = () => {
     setApiKey('');
-    localStorage.removeItem('aurafit_openai_key');
+    localStorage.removeItem('clothing_simulator_openai_key');
   };
 
   // Trigger Confetti Celebration
@@ -137,8 +150,7 @@ export default function App() {
                 AI Virtual <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-glow via-brand-cyber to-emerald-400">Try-On Studio</span>
               </h1>
               <p className="text-sm sm:text-base text-gray-300 max-w-2xl">
-                Upload kisi bhi insaan ki photo aur kisi bhi kapre (garment) ki photo. 
-                OpenAI GPT-4o Vision & GPT Image instantly un kapron ko model par dress-up kardenge!
+                Upload a photo of a person and a photo of any garment. ML models will create a realistic try-on image.
               </p>
             </div>
 
@@ -153,7 +165,7 @@ export default function App() {
                   {apiKey ? (
                     <>
                       <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                      OpenAI GPT-4o + GPT Image
+                      OpenAI 
                     </>
                   ) : (
                     <>
@@ -175,9 +187,9 @@ export default function App() {
                 <Key className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="font-bold text-white text-sm">OpenAI API Key Paste Karein</h4>
+                <h4 className="font-bold text-white text-sm">Add Your OpenAI API Key</h4>
                 <p className="text-xs text-gray-300">
-                  Aap app me direct apni API key paste kar ke original high-quality OpenAI generation apply kar sakte hain.
+                  Add your API key to generate try-on images with OpenAI.
                 </p>
               </div>
             </div>
@@ -214,7 +226,7 @@ export default function App() {
             <div>
               <h3 className="text-2xl font-black text-white">{statusMessage}</h3>
               <p className="text-xs text-gray-400 mt-2">
-                OpenAI GPT-4o & GPT Image are fitting the outfit onto the model posture...
+                ML Models are fitting the outfit onto the model posture...
               </p>
             </div>
             <div className="w-full bg-white/10 h-2 rounded-full overflow-hidden">
@@ -267,11 +279,11 @@ export default function App() {
       {/* Footer */}
       <footer className="w-full glass-panel border-t border-white/10 py-6 px-4 text-center text-xs text-gray-500 mt-12">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p>© 2026 AuraFit AI - Ultra Heavy Virtual Try-On Studio. Powered by OpenAI API.</p>
+          <p>© 2026 Clothing Simulator. Powered by ML Models.</p>
           <div className="flex items-center gap-4 text-gray-400">
             <span className="flex items-center gap-1"><ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Client Privacy Protected</span>
             <span>•</span>
-            <span className="text-brand-cyber">GPT-4o Vision Enabled</span>
+            <span className="text-brand-cyber"> Vision Enabled</span>
           </div>
         </div>
       </footer>

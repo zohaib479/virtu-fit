@@ -57,7 +57,7 @@ export default function ApiKeyModal({ isOpen, onClose, apiKey, onSaveKey, onClea
             100% Client-Side Privacy Guaranteed
           </div>
           <p>
-            Aapki API key aapke hi browser me <code className="text-brand-cyber">localStorage</code> me safe save rehti hai. Kisi middleman server par send nahi hoti direct OpenAI ko connect karti hai.
+            Your API key stays in your browser's <code className="text-brand-cyber">localStorage</code> and is sent directly to OpenAI. It is not sent to an intermediary server.
           </p>
         </div>
 
@@ -145,7 +145,7 @@ export default function ApiKeyModal({ isOpen, onClose, apiKey, onSaveKey, onClea
           {!inputKey && (
             <div className="flex items-center gap-2 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs">
               <AlertCircle className="w-4 h-4 flex-shrink-0" />
-              <span>Bina key ke app <strong>Demo Mode</strong> me chalegi standard fast mock rendering ke sath.</span>
+              <span>Without a key, the app runs in <strong>Demo Mode</strong> with fast, standard mock rendering.</span>
             </div>
           )}
         </form>

@@ -94,7 +94,7 @@ export const generateVirtualTryOn = async ({
     const visionData = await visionResponse.json();
     const garmentDescription = visionData.choices[0].message.content;
 
-    onStatusUpdate('🎨 Applying the garment to your photo with GPT Image...');
+    onStatusUpdate('🎨 Applying the garment to your photo with ML Models...');
 
     // Step 2: Edit the person photo using the garment photo as a reference.
     const imageResponse = await fetch('https://api.openai.com/v1/images/edits', {
@@ -129,7 +129,7 @@ export const generateVirtualTryOn = async ({
       : null);
 
     if (!generatedUrl) {
-      throw new Error('GPT Image returned no image data');
+      throw new Error('Generated image returned no image data');
     }
 
     return {
